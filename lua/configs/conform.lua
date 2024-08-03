@@ -3,7 +3,7 @@ local options = {
     lua = { "stylua" },
     -- c_cpp = { "clang-format" }, -- Hack to force download.
     c = { "clang-format" },
-    python = { "autopep8" },
+    python = { "autopep8", "black", "ruff" },
     cpp = { "clang-format" },
   },
 
