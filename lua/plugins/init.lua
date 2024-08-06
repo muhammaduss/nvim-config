@@ -15,6 +15,10 @@ return {
     end,
   },
 
+  {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+  },
+
   -- {
   -- 	"nvim-treesitter/nvim-treesitter",
   -- 	opts = {

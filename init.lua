@@ -28,6 +28,28 @@ require("lazy").setup({
   { import = "plugins" },
 }, lazy_config)
 
+require("mason-tool-installer").setup {
+  ensure_installed = {
+    "autopep8",
+    "black",
+    "clang-format",
+    "clangd",
+    "css-lsp",
+    "eslint_d",
+    "gofumpt",
+    "goimports-reviser",
+    "golines",
+    "gopls",
+    "html-lsp",
+    "lua-language-server",
+    "python-lsp-server",
+    "ruff",
+    "stylua",
+    "svelte-language-server",
+    "typescript-language-server",
+  },
+}
+
 -- load theme
 dofile(vim.g.base46_cache .. "defaults")
 dofile(vim.g.base46_cache .. "statusline")
