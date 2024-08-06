@@ -1,10 +1,11 @@
 local options = {
   formatters_by_ft = {
     lua = { "stylua" },
-    -- c_cpp = { "clang-format" }, -- Hack to force download.
     c = { "clang-format" },
     python = { "autopep8", "black", "ruff" },
     cpp = { "clang-format" },
+    go = { "goimports-reviser", "gofumpt", "golines" },
+    svelte = { "eslint_d" },
   },
 
   format_on_save = {
