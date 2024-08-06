@@ -3,10 +3,13 @@
 Inherited [NvChad](https://github.com/NvChad/NvChad) config and made the following changes:
 
 - Added LSP servers and formatters for C/C++, Python, Lua, Go and Svelte
+- Added [mason-tool-installer.nvim](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim) plugin to be able to install all mason.nvim packages by one command (`:MasonInstallAll` works with LSP only in my config and not always available, whereas this plugin have no problems)
 - Changed global indentation from 2 spaces to 4
 - Enabled relative lines for all files
 
-Mason packages:
+To install all Mason packages, run: `:MasonToolsInstall`
+
+Current list:
 
 - `autopep8`
 - `black`
