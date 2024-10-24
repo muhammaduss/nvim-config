@@ -2,7 +2,28 @@
 -- https://github.com/NvChad/ui/blob/v2.5/lua/nvconfig.lua
 -- Please read that file to know all available options :(
 
-local M = {}
+local M = {
+  ui = {
+    cmp = {
+      icons_left = false, -- only for non-atom styles!
+      lspkind_text = true,
+      style = "default", -- default/flat_light/flat_dark/atom/atom_colored
+      format_colors = {
+        tailwind = false, -- will work for css lsp too
+        icon = "󱓻",
+      },
+    },
+    telescope = {
+      style = "bordered",
+    },
+    tabufline = {
+      enabled = true,
+      lazyload = true,
+      order = { "treeOffset", "buffers", "tabs", "btns" },
+      modules = nil,
+    },
+  },
+}
 
 M.base46 = {
   theme = "chadracula-evondev",
@@ -14,8 +35,8 @@ M.base46 = {
   -- },
 }
 
-M.telescope = {
-  style = "bordered",
+M.lsp = {
+  signature = true,
 }
 
 M.nvdash = {

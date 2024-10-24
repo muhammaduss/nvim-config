@@ -11,6 +11,7 @@ Covered languages:
 - Lua
 - Haskell
 - PHP
+- Yaml
 - HTML/CSS
 
 Also you may need to run `:TSInstall <language>` with desired language (base syntax highlighting).

@@ -4,7 +4,7 @@ require("nvchad.configs.lspconfig").defaults()
 local lspconfig = require "lspconfig"
 
 -- EXAMPLE
-local servers = { "html", "cssls", "clangd", "pylsp", "phpactor", "hls" }
+local servers = { "html", "cssls", "clangd", "pylsp", "phpactor", "hls", "yamlls", "dockerls" }
 local nvlsp = require "nvchad.configs.lspconfig"
 
 -- lsps with default config
@@ -24,6 +24,25 @@ lspconfig.hls.setup {
   end,
   on_init = nvlsp.on_init,
   capabilities = nvlsp.capabilities,
+}
+
+lspconfig.yamlls.setup {
+  on_attach = function(client, bufnr)
+    client.server_capabilities.documentFormattingProvider = true -- I add this line
+    nvlsp.on_attach(client, bufnr)
+  end,
+  flags = nvlsp.lsp_flags,
+  capabilities = nvlsp.capabilities,
+  settings = {
+    yaml = {
+      format = {
+        enable = true,
+      },
+      schemaStore = {
+        enable = true,
+      },
+    },
+  },
 }
 
 -- configuring single server, example: typescript
