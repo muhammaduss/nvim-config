@@ -6,6 +6,7 @@ local options = {
     python = { "autopep8", "ruff", "black" },
     php = { "php" },
     haskell = { "ormolu", "hlint", "fourmolu", "stylish-haskell" },
+    go = { "gofumpt", "goimports-reviser", "golines" },
   },
   format_on_save = {
     -- These options will be passed to conform.format()
