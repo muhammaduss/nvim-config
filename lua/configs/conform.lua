@@ -3,14 +3,16 @@ local options = {
     lua = { "stylua" },
     css = { "prettier" },
     html = { "prettier" },
-    python = { "autopep8", "ruff", "black" },
+    python = { "autopep8" },
     php = { "php" },
     haskell = { "ormolu", "hlint", "fourmolu", "stylish-haskell" },
     go = { "gofumpt", "goimports-reviser", "golines" },
+    typescriptreact = { "prettier" },
+    typescript = { "prettier" },
   },
   format_on_save = {
     -- These options will be passed to conform.format()
-    timeout_ms = 500,
+    timeout_ms = 2000,
     lsp_fallback = true,
   },
   formatters = {
