@@ -5,7 +5,7 @@
 - Plugins in `lua/plugins.lua`
 - Added several lsp in `lua/configs/lspconfig.lua` and formatters & linters in `lua/configs/conform.lua`. You may use `:MasonInstallAll` to install everything by `mason.nvim`.
 
-Covered languages:
+Base setup done for:
 - Python
 - C/C++
 - Lua
@@ -13,6 +13,10 @@ Covered languages:
 - PHP
 - Yaml
 - HTML/CSS
+- Go
+- Svelte
+- Typescript
+- React
 
 Also you may need to run `:TSInstall <language>` with desired language (base syntax highlighting).
 
