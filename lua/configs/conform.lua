@@ -3,12 +3,14 @@ local options = {
     lua = { "stylua" },
     css = { "prettier" },
     html = { "prettier" },
-    python = { "autopep8" },
-    php = { "php" },
-    haskell = { "ormolu", "hlint", "fourmolu", "stylish-haskell" },
-    go = { "gofumpt", "goimports-reviser", "golines" },
+    python = { "black", "isort" },
+    -- php = { "php" },
+    -- haskell = { "ormolu", "hlint", "fourmolu", "stylish-haskell" },
+    -- go = { "gofumpt", "goimports-reviser", "golines" },
     typescriptreact = { "prettier" },
+    javascriptreact = { "prettier" },
     typescript = { "prettier" },
+    javascript = { "prettier" },
   },
   format_on_save = {
     -- These options will be passed to conform.format()

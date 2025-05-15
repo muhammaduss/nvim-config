@@ -9,14 +9,14 @@ local servers = {
   "ts_ls",
   "html",
   "cssls",
-  "clangd",
-  "pylsp",
-  "phpactor",
-  "hls",
-  "yamlls",
-  "dockerls",
-  "gopls",
+  -- "clangd",
+  -- "phpactor",
+  -- "hls",
+  -- "yamlls",
+  -- "dockerls",
+  -- "gopls",
   "svelte",
+  "basedpyright",
 }
 local nvlsp = require "nvchad.configs.lspconfig"
 
