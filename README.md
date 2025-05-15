@@ -1,33 +1,35 @@
+## What is it?
+
+Clone of [NvChad](https://github.com/NvChad/NvChad/) config for [Neovim](https://github.com/neovim/neovim).
+
 ## Custom changes
 
-- Added showing relative number, changed tabspace to 4
-- Custom ui config in `lua/chadrc.lua`
-- Plugins in `lua/plugins.lua`
-- Added several lsp in `lua/configs/lspconfig.lua` and formatters & linters in `lua/configs/conform.lua`. You may use `:MasonInstallAll` to install everything by `mason.nvim`.
+- Relative number of lines shows always
+- Default tabspace set to 4
+- Customization of ui config in `lua/chadrc.lua`
+- New plugins added in `lua/plugins.lua`
 
-Base setup done for:
+### LSP, Linters & Formatters
+Added lsp in `lua/configs/lspconfig.lua`, formatters in `lua/configs/conform.lua` and linters configuration in `nvim-lint` plugin specification. Current setup done for:
 - Python
-- C/C++
-- Lua
-- Haskell
-- PHP
-- Yaml
-- HTML/CSS
-- Go
+- Lua (except linter)
+- HTML/CSS/JS/TS
 - Svelte
-- Typescript
 - React
 
-Also you may need to run `:TSInstall <language>` with desired language (base syntax highlighting).
+## Installation
 
-## What is it?
-**This repo is supposed to used as config by NvChad users!**
+Clone repo and it should work with basic configs. 
 
-- The main nvchad repo (NvChad/NvChad) is used as a plugin by this repo.
-- So you just import its modules , like `require "nvchad.options" , require "nvchad.mappings"`
-- So you can delete the .git from this repo ( when you clone it locally ) or fork it :)
+To use lsp, linters and formatters for listed languages, make sure you have:
+- Python 3.12.3
+    - python3-pip
+    - python3-venv
+- Node v23.10.0
+- npm 10.9.2
 
-# Credits
+> Note: it is not necessarily that only those versions will work, maybe python 3.11 or other versions is also okay 
 
-1) Lazyvim starter https://github.com/LazyVim/starter as nvchad's starter was inspired by Lazyvim's . It made a lot of things easier!
+Then, use on command bar `:MasonInstallAll` to install all toolings by `mason.nvim` (included in plugins).
 
+Also you can run `:TSInstall <language>` with desired language (base syntax highlighting).
