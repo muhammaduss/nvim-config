@@ -9,14 +9,13 @@ local servers = {
   "ts_ls",
   "html",
   "cssls",
-  "clangd",
-  "pylsp",
-  "phpactor",
-  "hls",
-  "yamlls",
+  -- "phpactor",
+  -- "hls",
   "dockerls",
   "gopls",
   "svelte",
+  "basedpyright",
+  -- "docker_compose_language_service",
 }
 local nvlsp = require "nvchad.configs.lspconfig"
 
@@ -29,30 +28,35 @@ for _, lsp in ipairs(servers) do
   }
 end
 
-lspconfig.hls.setup {
-  on_attach = function(client, bufnr)
-    client.server_capabilities.documentFormattingProvider = false
-    client.server_capabilities.documentRangeFormattingProvider = false
-    nvlsp.on_attach(client, bufnr)
-  end,
-  on_init = nvlsp.on_init,
-  capabilities = nvlsp.capabilities,
-}
+-- lspconfig.hls.setup {
+--   on_attach = function(client, bufnr)
+--     client.server_capabilities.documentFormattingProvider = false
+--     client.server_capabilities.documentRangeFormattingProvider = false
+--     nvlsp.on_attach(client, bufnr)
+--   end,
+--   on_init = nvlsp.on_init,
+--   capabilities = nvlsp.capabilities,
+-- }
 
 lspconfig.yamlls.setup {
   on_attach = function(client, bufnr)
-    client.server_capabilities.documentFormattingProvider = true -- I add this line
+    -- client.server_capabilities.documentFormattingProvider = true
     nvlsp.on_attach(client, bufnr)
   end,
   flags = nvlsp.lsp_flags,
   capabilities = nvlsp.capabilities,
   settings = {
     yaml = {
-      format = {
-        enable = true,
-      },
-      schemaStore = {
-        enable = true,
+      schemas = {
+        -- ["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.33.0-standalone-strict/all.json"] = "k8s-*.yaml",
+        kubernetes = { "k8s.yaml", "templates/*" },
+        ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*",
+        ["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
+        ["http://json.schemastore.org/ansible-stable-2.9"] = "roles/tasks/**/*.{yml,yaml}",
+        ["http://json.schemastore.org/prettierrc"] = ".prettierrc.{yml,yaml}",
+        ["http://json.schemastore.org/kustomization"] = "kustomization.{yml,yaml}",
+        ["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
+        ["http://json.schemastore.org/circleciconfig"] = ".circleci/**/*.{yml,yaml}",
       },
     },
   },
@@ -73,19 +77,19 @@ lspconfig.clangd.setup {
 --   capabilities = nvlsp.capabilities,
 -- }
 
-require("lspconfig").phpactor.setup {
-  root_dir = function(_)
-    return vim.loop.cwd()
-  end,
-  init_options = {
-    ["language_server.diagnostics_on_update"] = false,
-    ["language_server.diagnostics_on_open"] = false,
-    ["language_server.diagnostics_on_save"] = false,
-    ["language_server_phpstan.enabled"] = false,
-    ["language_server_psalm.enabled"] = false,
-  },
-}
-
+-- require("lspconfig").phpactor.setup {
+--   root_dir = function(_)
+--     return vim.loop.cwd()
+--   end,
+--   init_options = {
+--     ["language_server.diagnostics_on_update"] = false,
+--     ["language_server.diagnostics_on_open"] = false,
+--     ["language_server.diagnostics_on_save"] = false,
+--     ["language_server_phpstan.enabled"] = false,
+--     ["language_server_psalm.enabled"] = false,
+--   },
+-- }
+--
 require("lspconfig").lua_ls.setup {
   on_init = function(client)
     local path = client.workspace_folders[1].name

@@ -32,6 +32,59 @@ return {
   },
 
   {
+
+    "mfussenegger/nvim-lint",
+    event = {
+      "BufReadPre",
+      "BufNewFile",
+    },
+    config = function()
+      local lint = require "lint"
+
+      lint.linters_by_ft = {
+        javascript = { "eslint_d" },
+        typescript = { "eslint_d" },
+        css = { "stylelint" },
+        javascriptreact = { "eslint_d" },
+        typescriptreact = { "eslint_d" },
+        html = { "htmlhint" },
+        svelte = { "eslint_d" },
+        python = { "ruff", "bandit" },
+        dockerfile = { "hadolint" },
+        yaml = { "yamllint" },
+        go = { "revive" },
+        c = { "cpplint" },
+        cpp = { "cpplint" },
+      }
+
+      local manual_linters = {
+        yaml = { "actionlint" },
+      }
+
+      local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
+
+      vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
+        group = lint_augroup,
+        callback = function()
+          lint.try_lint()
+        end,
+      })
+
+      vim.keymap.set("n", "<leader>l", function()
+        lint.try_lint()
+        local original_linters = vim.deepcopy(lint.linters_by_ft)
+        for ft, linters in pairs(manual_linters) do
+          lint.linters_by_ft[ft] = lint.linters_by_ft[ft] or {}
+          vim.list_extend(lint.linters_by_ft[ft], linters)
+        end
+        lint.try_lint()
+        -- Restore original linters
+        lint.linters_by_ft = original_linters
+      end, { desc = "Trigger linting for current file" })
+    end,
+  },
+
+  {
     "dccsillag/magma-nvim",
     version = "*",
     lazy = false, -- workaround while debugging other stuff
