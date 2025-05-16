@@ -41,7 +41,7 @@ Now it should work, but for better experience: to use lsp, linters and formatter
     - linter for CSS: [stylelint-config-standard](https://www.npmjs.com/package/stylelint-config-standard/v/25.0.0) and create file .stylelintrc.json, [example](https://stylelint.io/user-guide/configure/#extends) how to fill
     - linter for all other toolings: eslint (config file and packages specification were builtin while creating react/svelte projects, in that case if all npm packages of project installed - no need to install eslint by hand)
 
-> Note: it is not necessarily that only those versions will work, for example python 3.11 or other versions is also okay 
+> Note: it is not necessarily that only those versions will work, for example for python version 3.11 is also might be okay 
 
 Then, use on command bar `:MasonInstallAll` to install all toolings by `mason.nvim` (included in plugins).
 
