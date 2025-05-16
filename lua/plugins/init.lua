@@ -50,6 +50,15 @@ return {
         html = { "htmlhint" },
         svelte = { "eslint_d" },
         python = { "ruff", "bandit" },
+        dockerfile = { "hadolint" },
+        yaml = { "yamllint" },
+        go = { "revive" },
+        c = { "cpplint" },
+        cpp = { "cpplint" },
+      }
+
+      local manual_linters = {
+        yaml = { "actionlint" },
       }
 
       local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
@@ -63,6 +72,14 @@ return {
 
       vim.keymap.set("n", "<leader>l", function()
         lint.try_lint()
+        local original_linters = vim.deepcopy(lint.linters_by_ft)
+        for ft, linters in pairs(manual_linters) do
+          lint.linters_by_ft[ft] = lint.linters_by_ft[ft] or {}
+          vim.list_extend(lint.linters_by_ft[ft], linters)
+        end
+        lint.try_lint()
+        -- Restore original linters
+        lint.linters_by_ft = original_linters
       end, { desc = "Trigger linting for current file" })
     end,
   },

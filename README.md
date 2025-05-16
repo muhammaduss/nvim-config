@@ -16,19 +16,27 @@ Added lsp in `lua/configs/lspconfig.lua`, formatters in `lua/configs/conform.lua
 - HTML/CSS/JS/TS
 - Svelte
 - React
+- Dockerfile
+- Yaml
+- Go
+- C/C++
 
 ## Installation
 
 Clone repo and it should work with basic configs. 
 
-To use lsp, linters and formatters for listed languages, make sure you have:
+To use lsp, linters and formatters for listed languages, you might need:
 - Python 3.12.3
     - python3-pip
     - python3-venv
 - Node v23.10.0
 - npm 10.9.2
+- go 1.24.3
+- (optional) frontend linters:
+    - linter for CSS: [stylelint-config-standard](https://www.npmjs.com/package/stylelint-config-standard/v/25.0.0) and create file .stylelintrc.json, [example](https://stylelint.io/user-guide/configure/#extends) how to fill
+    - linter for all other toolings: eslint (config file and packages specification were builtin while creating react/svelte projects, in that case if all npm packages of project installed - no need to install eslint by hand)
 
-> Note: it is not necessarily that only those versions will work, maybe python 3.11 or other versions is also okay 
+> Note: it is not necessarily that only those versions will work, for example python 3.11 or other versions is also okay 
 
 Then, use on command bar `:MasonInstallAll` to install all toolings by `mason.nvim` (included in plugins).
 
