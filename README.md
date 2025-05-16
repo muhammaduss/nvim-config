@@ -17,15 +17,20 @@ Added lsp in `lua/configs/lspconfig.lua`, formatters in `lua/configs/conform.lua
 - Svelte
 - React
 - Dockerfile
-- Yaml
+- Yaml (except formatter)
 - Go
 - C/C++
 
 ## Installation
 
-Clone repo and it should work with basic configs. 
+Check out installation [guide](https://nvchad.com/docs/quickstart/install) for NvChad and ensure pre-requisities from there installed.
 
-To use lsp, linters and formatters for listed languages, you might need:
+Then, clone this repo (example for Linux by HTTPS, also make sure to backup your previous config if you need it)
+```bash
+https://github.com/muhammaduss/nvim-config.git ~/.config/nvim && nvim
+```
+
+Now it should work, but for better experience: to use lsp, linters and formatters for listed languages and tools above, you might need:
 - Python 3.12.3
     - python3-pip
     - python3-venv
