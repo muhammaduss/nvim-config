@@ -43,3 +43,4 @@ vim.opt.tabstop = 4
 vim.g.python3_host_prog = vim.fn.exepath "python3"
 vim.g.loaded_python3_provider = nil
 vim.cmd "runtime! plugin/rplugin.vim"
+vim.opt.clipboard = "unnamedplus"
