@@ -15,6 +15,7 @@ local servers = {
   "gopls",
   "svelte",
   "basedpyright",
+  "marksman",
   -- "docker_compose_language_service",
 }
 local nvlsp = require "nvchad.configs.lspconfig"

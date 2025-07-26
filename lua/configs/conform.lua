@@ -11,6 +11,7 @@ local options = {
     javascriptreact = { "prettier" },
     typescript = { "prettier" },
     javascript = { "prettier" },
+    markdown = { "markdownlint" },
   },
   format_on_save = {
     -- These options will be passed to conform.format()

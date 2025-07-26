@@ -85,6 +85,13 @@ return {
   },
 
   {
+    "OXY2DEV/markview.nvim",
+    lazy = false,
+
+    priority = 49,
+  },
+
+  {
     "dccsillag/magma-nvim",
     version = "*",
     lazy = false, -- workaround while debugging other stuff
