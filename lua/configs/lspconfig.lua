@@ -63,10 +63,23 @@ lspconfig.yamlls.setup {
   },
 }
 
+local custom_on_attach = function(client, bufnr)
+  require("nvchad.configs.lspconfig").on_attach(client, bufnr)
+
+  local opts = { noremap = true, silent = true, buffer = bufnr }
+
+  vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+  vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+  vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+  vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+  vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+  vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+end
+
 lspconfig.clangd.setup {
   on_attach = function(client, bufnr)
     client.server_capabilities.signatureHelpProvider = false
-    nvlsp.on_attach(client, bufnr)
+    custom_on_attach(client, bufnr)
   end,
   capabilities = nvlsp.capabilities,
 }
