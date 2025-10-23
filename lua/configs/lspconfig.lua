@@ -26,12 +26,14 @@ local servers = {
   "svelte",
   "basedpyright",
   "marksman",
+  "yamlls",
 }
-
-vim.lsp.enable(servers)
 
 -- For yamlls
 vim.lsp.config("yamlls", {
+  on_attach = function(client)
+    client.server_capabilities.documentFormattingProvider = true -- I add this line
+  end,
   settings = {
     yaml = {
       schemas = {
@@ -44,9 +46,17 @@ vim.lsp.config("yamlls", {
         ["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
         ["http://json.schemastore.org/circleciconfig"] = ".circleci/**/*.{yml,yaml}",
       },
+      format = {
+        enable = false,
+      },
+      schemaStore = {
+        enable = true,
+      },
     },
   },
 })
+
+vim.lsp.enable(servers)
 
 -- For clangd with custom on_attach
 local custom_on_attach = function(client, bufnr)

@@ -49,7 +49,7 @@ return {
         typescriptreact = { "eslint_d" },
         html = { "htmlhint" },
         svelte = { "eslint_d" },
-        python = { "ruff", "bandit" },
+        -- python = { "ruff", "bandit" },
         dockerfile = { "hadolint" },
         yaml = { "yamllint" },
         go = { "revive" },
