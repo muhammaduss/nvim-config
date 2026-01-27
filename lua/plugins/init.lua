@@ -16,6 +16,56 @@ return {
     end,
   },
 
+  {
+    "nvzone/typr",
+    dependencies = "nvzone/volt",
+    opts = {},
+    cmd = { "Typr", "TyprStats" },
+  },
+
+  {
+    "sphamba/smear-cursor.nvim",
+    lazy = false,
+    opts = {
+      -- Smear cursor when switching buffers or windows.
+      smear_between_buffers = true,
+
+      -- Smear cursor when moving within line or to neighbor lines.
+      -- Use `min_horizontal_distance_smear` and `min_vertical_distance_smear` for finer control
+      smear_between_neighbor_lines = true,
+
+      -- Draw the smear in buffer space instead of screen space when scrolling
+      scroll_buffer_space = true,
+
+      -- Set to `true` if your font supports legacy computing symbols (block unicode symbols).
+      -- Smears and particles will look a lot less blocky.
+      legacy_computing_symbols_support = false,
+
+      -- Smear cursor in insert mode.
+      -- See also `vertical_bar_cursor_insert_mode` and `distance_stop_animating_vertical_bar`.
+
+      cursor_color = "#ff4000",
+      particles_enabled = true,
+      stiffness = 0.5,
+      trailing_stiffness = 0.2,
+      trailing_exponent = 5,
+      damping = 0.6,
+      gradient_exponent = 0,
+      gamma = 1,
+      never_draw_over_target = true, -- if you want to actually see under the cursor
+      hide_target_hack = true, -- same
+      particle_spread = 3,
+      particles_per_second = 300,
+      particles_per_length = 50,
+      particle_max_lifetime = 800,
+      particle_max_initial_velocity = 20,
+      particle_velocity_from_cursor = 0.5,
+      particle_damping = 0.15,
+      particle_gravity = -50,
+      min_distance_emit_particles = 0,
+    },
+  },
+
   "nvchad/volt",
   {
     "stevearc/conform.nvim",
@@ -101,29 +151,28 @@ return {
   --   priority = 49,
   -- },
 
-  {
-    "dccsillag/magma-nvim",
-    version = "*",
-    lazy = false, -- workaround while debugging other stuff
-    ft = { "ipynb" },
-    keys = {
-      {
-        "<leader>mi",
-        "<cmd>MagmaInit<CR>",
-        desc = "This command initializes a runtime for the current buffer.",
-      },
-      { "<leader>mo", "<cmd>MagmaEvaluateOperator<CR>", desc = "Evaluate the text given by some operator." },
-      { "<leader>ml", "<cmd>MagmaEvaluateLine<CR>", desc = "Evaluate the current line." },
-      { "<leader>mv", "<cmd>MagmaEvaluateVisual<CR>", desc = "Evaluate the selected text." },
-      { "<leader>mc", "<cmd>MagmaEvaluateOperator<CR>", desc = "Reevaluate the currently selected cell." },
-      { "<leader>mr", "<cmd>MagmaRestart!<CR>", desc = "Shuts down and restarts the current kernel." },
-      {
-        "<leader>mx",
-        "<cmd>MagmaInterrupt<CR>",
-        desc = "Interrupts the currently running cell and does nothing if not cell is running.",
-      },
-    },
-  },
+  -- {
+  --   "dccsillag/magma-nvim",
+  --   version = "*",
+  --   ft = { "ipynb" },
+  --   keys = {
+  --     {
+  --       "<leader>mi",
+  --       "<cmd>MagmaInit<CR>",
+  --       desc = "This command initializes a runtime for the current buffer.",
+  --     },
+  --     { "<leader>mo", "<cmd>MagmaEvaluateOperator<CR>", desc = "Evaluate the text given by some operator." },
+  --     { "<leader>ml", "<cmd>MagmaEvaluateLine<CR>", desc = "Evaluate the current line." },
+  --     { "<leader>mv", "<cmd>MagmaEvaluateVisual<CR>", desc = "Evaluate the selected text." },
+  --     { "<leader>mc", "<cmd>MagmaEvaluateOperator<CR>", desc = "Reevaluate the currently selected cell." },
+  --     { "<leader>mr", "<cmd>MagmaRestart!<CR>", desc = "Shuts down and restarts the current kernel." },
+  --     {
+  --       "<leader>mx",
+  --       "<cmd>MagmaInterrupt<CR>",
+  --       desc = "Interrupts the currently running cell and does nothing if not cell is running.",
+  --     },
+  --   },
+  -- },
 
   -- {
   -- 	"nvim-treesitter/nvim-treesitter",
