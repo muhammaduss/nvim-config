@@ -44,3 +44,7 @@ vim.g.python3_host_prog = vim.fn.exepath "python3"
 vim.g.loaded_python3_provider = nil
 vim.cmd "runtime! plugin/rplugin.vim"
 vim.opt.clipboard = "unnamedplus"
+
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldlevel = 99

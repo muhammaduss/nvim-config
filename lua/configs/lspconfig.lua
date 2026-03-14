@@ -57,6 +57,7 @@ vim.lsp.config("yamlls", {
 })
 
 vim.lsp.enable(servers)
+vim.opt.winborder = "rounded"
 
 -- For clangd with custom on_attach
 local custom_on_attach = function(client, bufnr)
