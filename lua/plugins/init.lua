@@ -9,6 +9,26 @@ return {
   },
 
   {
+    "nvim-tree/nvim-web-devicons",
+    opts = function()
+      return {
+        override = {
+          yaml = {
+            icon = "",
+            color = "#cb171e",
+            name = "Yaml",
+          },
+          yml = {
+            icon = "",
+            color = "#cb171e",
+            name = "Yaml",
+          },
+        },
+      }
+    end,
+  },
+
+  {
     "nvchad/base46",
     lazy = false,
     build = function()
@@ -23,6 +43,24 @@ return {
     cmd = { "Typr", "TyprStats" },
   },
 
+  -- { "joryeugene/dadbod-grip.nvim", version = "*" },
+
+  -- {
+  --   "kndndrj/nvim-dbee",
+  --   lazy = false,
+  --   dependencies = {
+  --     "MunifTanjim/nui.nvim",
+  --   },
+  --   build = function()
+  --     -- Install tries to automatically detect the install method.
+  --     -- if it fails, try calling it with one of these parameters:
+  --     --    "curl", "wget", "bitsadmin", "go"
+  --     require("dbee").install()
+  --   end,
+  --   config = function()
+  --     require("dbee").setup(--[[optional config]])
+  --   end,
+  -- },
   -- {
   --   "sphamba/smear-cursor.nvim",
   --   lazy = false,
@@ -97,19 +135,19 @@ return {
           },
         },
       },
-      {
-        "MeanderingProgrammer/render-markdown.nvim",
-        opts = {
-          file_types = { "markdown", "Avante" },
-        },
-        ft = { "markdown", "Avante" },
-      },
+      -- {
+      --   "MeanderingProgrammer/render-markdown.nvim",
+      --   opts = {
+      --     file_types = { "markdown", "Avante" },
+      --   },
+      --   ft = { "markdown", "Avante" },
+      -- },
     },
     config = function()
       require("avante").setup {
         instructions_file = "avante.md",
         provider = "openrouter",
-        auto_suggestions_provider = "openrouter",
+        -- auto_suggestions_provider = "openrouter",
         providers = {
           openrouter = {
             __inherited_from = "openai",
@@ -120,15 +158,15 @@ return {
         },
         behaviour = {
           auto_approve_tool_permissions = false,
-          auto_suggestions = true,
+          -- auto_suggestions = true,
           auto_set_highlight_group = true,
           auto_set_keymaps = true,
           auto_apply_diff_after_generation = false,
         },
-        suggestion = {
-          debounce = 600,
-          throttle = 600,
-        },
+        -- suggestion = {
+        --   debounce = 600,
+        --   throttle = 600,
+        -- },
       }
 
       local cmp = require "cmp"
@@ -174,7 +212,6 @@ return {
     opts = require "configs.conform",
   },
 
-  -- These are some examples, uncomment them if you want to see them work!
   {
     "neovim/nvim-lspconfig",
     config = function()
@@ -284,6 +321,7 @@ return {
         "vimdoc",
         "html",
         "css",
+        "yaml",
       },
     },
   },
