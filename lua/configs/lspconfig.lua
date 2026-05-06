@@ -27,17 +27,18 @@ local servers = {
   "basedpyright",
   "marksman",
   "yamlls",
+  "helm_ls",
 }
 
 -- For yamlls
 vim.lsp.config("yamlls", {
   on_attach = function(client)
-    client.server_capabilities.documentFormattingProvider = true -- I add this line
+    client.server_capabilities.documentFormattingProvider = true
   end,
   settings = {
     yaml = {
       schemas = {
-        kubernetes = { "k8s.yaml", "templates/*" },
+        kubernetes = { "*.yaml" },
         ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*",
         ["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
         ["http://json.schemastore.org/ansible-stable-2.9"] = "roles/tasks/**/*.{yml,yaml}",
@@ -47,7 +48,7 @@ vim.lsp.config("yamlls", {
         ["http://json.schemastore.org/circleciconfig"] = ".circleci/**/*.{yml,yaml}",
       },
       format = {
-        enable = false,
+        enable = true,
       },
       schemaStore = {
         enable = true,

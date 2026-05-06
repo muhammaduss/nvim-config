@@ -48,3 +48,15 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldlevel = 99
+
+vim.filetype.add {
+  extension = {
+    tpl = "helm",
+    yaml = function(path)
+      if path:match "templates" or path:match "values.yaml" then
+        return "helm"
+      end
+      return "yaml"
+    end,
+  },
+}
