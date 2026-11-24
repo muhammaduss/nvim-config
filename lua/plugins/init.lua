@@ -24,11 +24,32 @@ local M = {
   typr = false,
 
   -- ai
-  avante = true,
+  avante = false,
+  todo = true,
 }
 
 return {
   "nvim-lua/plenary.nvim",
+
+  {
+    "christoomey/vim-tmux-navigator",
+    event = "VeryLazy",
+
+    cmd = {
+      "TmuxNavigateLeft",
+      "TmuxNavigateDown",
+      "TmuxNavigateUp",
+      "TmuxNavigateRight",
+      "TmuxNavigatePrevious",
+    },
+    keys = {
+      { "<c-h>", "<cmd>TmuxNavigateLeft<cr>" },
+      { "<c-j>", "<cmd>TmuxNavigateDown<cr>" },
+      { "<c-k>", "<cmd>TmuxNavigateUp<cr>" },
+      { "<c-l>", "<cmd>TmuxNavigateRight<cr>" },
+      { "<c-\\>", "<cmd>TmuxNavigatePrevious<cr>" },
+    },
+  },
 
   {
     "nvchad/ui",
@@ -137,83 +158,67 @@ return {
 
   {
     "yetone/avante.nvim",
-    enabled = M.avante,
     build = vim.fn.has "win32" ~= 0 and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
       or "make",
     event = "VeryLazy",
-    version = false,
+    enabled = M.avante,
+    version = false, -- Never set this value to "*"! Never!
+    ---@module 'avante'
+    ---@type avante.Config
+    opts = {
+      -- add any opts here
+      -- this file can contain specific instructions for your project
+      instructions_file = "avante.md",
+      -- for example
+      provider = "openrouter",
+      providers = {
+        openrouter = {
+          __inherited_from = "openai",
+          endpoint = "https://openrouter.ai/api/v1",
+          api_key_name = "OPENROUTER_API_KEY",
+          model = "openrouter/owl-alpha",
+        },
+      },
+    },
     dependencies = {
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
-      "nvim-mini/mini.pick",
-      "nvim-telescope/telescope.nvim",
-      "hrsh7th/nvim-cmp",
-      "ibhagwan/fzf-lua",
-      "stevearc/dressing.nvim",
-      "folke/snacks.nvim",
-      "nvim-tree/nvim-web-devicons",
-      "zbirenbaum/copilot.lua",
+      --- The below dependencies are optional,
+      "nvim-mini/mini.pick", -- for file_selector provider mini.pick
+      "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
+      "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
+      "ibhagwan/fzf-lua", -- for file_selector provider fzf
+      "stevearc/dressing.nvim", -- for input provider dressing
+      "folke/snacks.nvim", -- for input provider snacks
+      "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+      "zbirenbaum/copilot.lua", -- for providers='copilot'
       {
+        -- support for image pasting
         "HakonHarnes/img-clip.nvim",
         event = "VeryLazy",
         opts = {
+          -- recommended settings
           default = {
             embed_image_as_base64 = false,
             prompt_for_file_name = false,
             drag_and_drop = {
               insert_mode = true,
             },
+            -- required for Windows users
             use_absolute_path = true,
           },
         },
       },
       {
+        -- Make sure to set this up properly if you have lazy=true
         "MeanderingProgrammer/render-markdown.nvim",
-        enabled = false,
         opts = {
           file_types = { "markdown", "Avante" },
         },
         ft = { "markdown", "Avante" },
       },
     },
-    config = function()
-      require("avante").setup {
-        instructions_file = "avante.md",
-        provider = "openrouter",
-        -- auto_suggestions_provider = "openrouter",
-        providers = {
-          openrouter = {
-            __inherited_from = "openai",
-            endpoint = "https://openrouter.ai/api/v1",
-            api_key_name = "OPENAI_API_KEY",
-            model = "stepfun/step-3.5-flash:free",
-          },
-        },
-        behaviour = {
-          auto_approve_tool_permissions = false,
-          -- auto_suggestions = true,
-          auto_set_highlight_group = true,
-          auto_set_keymaps = true,
-          auto_apply_diff_after_generation = false,
-        },
-        -- suggestion = {
-        --   debounce = 600,
-        --   throttle = 600,
-        -- },
-      }
-
-      local cmp = require "cmp"
-      cmp.setup.filetype("Avante", {
-        sources = cmp.config.sources {
-          { name = "avante_mentions" },
-          { name = "avante_commands" },
-          { name = "avante_files" },
-          { name = "avante_shortcuts" },
-        },
-      })
-    end,
   },
-
   {
     "ThePrimeagen/harpoon",
     branch = "harpoon2",
@@ -370,5 +375,26 @@ return {
         "markdown",
       },
     },
+  },
+
+  {
+    "atiladefreitas/dooing",
+    -- enabled = M.todo,
+    lazy = false,
+    config = function()
+      require("dooing").setup {
+        ui = {
+          style = "modern", -- Opts into the modern, minimalist interface
+        },
+        window = {
+          dimensions = function()
+            return {
+              width = math.max(60, math.floor(vim.o.columns * 0.6)), -- 60% of editor width
+              height = math.max(15, math.floor(vim.o.lines * 0.6)),
+            }
+          end,
+        },
+      }
+    end,
   },
 }

@@ -26,7 +26,7 @@ local M = {
 }
 
 M.base46 = {
-  theme = "chocolate",
+  theme = "chadracula",
   transparency = true,
 
   -- hl_override = {
